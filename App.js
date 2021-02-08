@@ -6,6 +6,7 @@ import MainBottomNavigator from './src/navigations/MainBottomNavigator';
 export default function App() {
   return (
     <NavigationContainer>
+      <StatusBar hidden/>
       <MainBottomNavigator/>
     </NavigationContainer>
   );
