@@ -3,6 +3,7 @@ import { View, Text } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import CategoryMoviesListScreen from '../screens/CategoryMoviesListScreen'
 import CategoriesScreen from '../screens/CategoriesScreen'
+import { MainStyle } from '../styles/styles'
 
 const Stack = createStackNavigator()
 
