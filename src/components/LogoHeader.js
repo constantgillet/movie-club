@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        flex: 0.35
+        flex: 0.4
     },
     image: {
         width: 200,
