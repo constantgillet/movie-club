@@ -1,7 +1,8 @@
-import React from 'react'
-import { View, Text, StyleSheet, Button, SafeAreaView } from 'react-native'
+import React, { useState } from 'react'
+import { View, Text, StyleSheet, Button, SafeAreaView, FlatList } from 'react-native'
 import ButtonCategories from '../components/ButtonCategories'
 import LogoHeader from '../components/LogoHeader'
+import { searchMovies } from '../services/movies'
 
 
 export default function CategoriesScreen() {
@@ -9,9 +10,17 @@ export default function CategoriesScreen() {
         <SafeAreaView style={styles.mainContainer}>
             <LogoHeader/>
                 
-            <View style={styles.buttonCategories}>
-                <ButtonCategories/>
-            </View>
+            <FlatList
+                style={styles.categories}
+                columnWrapperStyle={{justifyContent: 'space-between'}}
+                data={"testsaufuaufuazfu"}
+                numColumns={2}
+                renderItem={({item}) => {
+                return (
+                    <ButtonCategories/>
+                );
+                }}
+            />
         </SafeAreaView>
 
     )
@@ -26,6 +35,10 @@ const styles = StyleSheet.create({
     },
     buttonCategories: {
         flex: 1,
+    },
+    categories: {
+        marginHorizontal: 40
+        
     }
 })
 
