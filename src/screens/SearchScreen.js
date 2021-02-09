@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, SafeAreaView, Image } from 'react-native'
+import { View, Text, StyleSheet, SafeAreaView, Image, FlatList } from 'react-native'
 import LogoHeader from '../components/LogoHeader'
 import Search from '../components/Search'
 import { MainStyle } from '../styles/styles'
@@ -11,7 +11,9 @@ export default function SearchScreen() {
         searchQuery: '',
         moviesList: [],
         isLoading: false,
-        page: 0
+        page: 0,
+        noResult: true,
+        noResultMessage: 'Aucune recherche effectuée'
     })
 
     const handleSearchText = (text) => {
@@ -19,7 +21,12 @@ export default function SearchScreen() {
     }
 
     const _searchMovies = () => {
-        loadMovies({...state, isLoading: false, page:  0, moviesList: []})
+
+        if (state.searchQuery != '') {
+           loadMovies({...state, isLoading: false, page:  0, moviesList: []}) 
+        } else {
+            setState({...state, isLoading: false, page:  0, moviesList: [], noResult: true, noResultMessage: 'Aucune recherche effectuée'})
+        }   
     }
 
     const loadMovies = (_state) => {
@@ -30,7 +37,7 @@ export default function SearchScreen() {
 
         searchMovies(_state.searchQuery, _state.page + 1)
             .then(data => {
-                setState({..._state, page: data.page, moviesList: [..._state.moviesList, ...data.results]})
+                setState({..._state, page: data.page, moviesList: [..._state.moviesList, ...data.results], noResult: false, noResultMessage: 'Il n\'y a aucun resultat'})
             })
     }
 
@@ -39,17 +46,28 @@ export default function SearchScreen() {
             <LogoHeader/>
             <Search handleSearch={ handleSearchText } handleClickButton={ _searchMovies } />
             {
-                state.searchQuery.length == 0 || state.moviesList == 0 ? (
+                state.moviesList == 0 || state.noResult ? (
+
                     <View style={styles.noResultContainer}>
                         <Image style={styles.noResultImage} source={require('../../assets/images/bad.png')}/>
                         <Text style={styles.noResultText}>
-                            Aucune recherche effectuée
+                            {state.noResultMessage}
                         </Text>
                     </View>
+
                 ) : (
-                    <View>
-                        <Text>{state.moviesList.length}</Text>
-                    </View>
+
+                    <FlatList
+                        style={styles.moviesList}
+                        data={state.moviesList}
+                        renderItem={({item}) => <Text> { item.title }</Text>}
+                        keyExtractor={item => item.id.toString()}
+                        onEndReachedThreshold={0.5}
+                        onEndReached={() => {
+                            console.log('end');
+                        }}
+                    />
+ 
                 )
             }
         </SafeAreaView>
@@ -60,6 +78,8 @@ const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
         backgroundColor: MainStyle.screenBackgroundColor
+    },
+    moviesList: {
     },
     noResultContainer: {
         flex: 1,
