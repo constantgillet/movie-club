@@ -26,8 +26,6 @@ const styles = StyleSheet.create({
     },
     buttonCategories: {
         flex: 1,
-        flex: 0.6,
-        flex: 'row'
     }
 })
 
