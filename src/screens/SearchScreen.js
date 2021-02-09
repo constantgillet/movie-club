@@ -6,7 +6,7 @@ import { MainStyle } from '../styles/styles'
 import { searchMovies } from '../services/movies'
 import MovieListItem from '../components/MovieListItem'
 
-export default function SearchScreen() {
+export default function SearchScreen(props) {
 
     const [state, setState] = useState({
         searchQuery: '',
@@ -64,7 +64,7 @@ export default function SearchScreen() {
                     <FlatList
                         style={styles.moviesList}
                         data={state.moviesList}
-                        renderItem={({item}) => <MovieListItem movie={item} />}
+                        renderItem={({item}) => <MovieListItem movie={item} onPress={() => props.navigation.navigate('DetailScreen', {id: item.id})}/>}
                         keyExtractor={item => item.id.toString()}
                         onEndReachedThreshold={0.2}
                         onEndReached={() => {

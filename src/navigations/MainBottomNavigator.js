@@ -6,6 +6,7 @@ import SearchScreen from '../screens/SearchScreen'
 import { MainStyle } from '../styles/styles'
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import CategoriesNavigator from './CategoriesNavigator'
+import SearchNavigator from './SearchNavigator'
 
 const TabNavigator = createBottomTabNavigator()
 
@@ -35,7 +36,7 @@ export default function MainBottomNavigator() {
             />
             <TabNavigator.Screen 
                 name="Search" 
-                component={SearchScreen}
+                component={SearchNavigator}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <FontAwesome5 

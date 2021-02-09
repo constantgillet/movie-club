@@ -3,13 +3,13 @@ import { View, Text, StyleSheet, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { MainStyle } from '../styles/styles'
 
-export default function MovieListItem({movie}) {
+export default function MovieListItem({movie, onPress}) {
 
     const releaseYear = new Date(movie.release_date).getFullYear();
 
 
     return (
-        <TouchableOpacity style={styles.mainContainer}>
+        <TouchableOpacity style={styles.mainContainer} onPress={onPress}>
             <Image source={{uri: `https://image.tmdb.org/t/p/original${movie.poster_path}`}} style={styles.image} />
             <View style={styles.contentContainer}>
                 <View style={styles.textContainer}>
