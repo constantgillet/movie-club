@@ -4,6 +4,7 @@ import LogoHeader from '../components/LogoHeader'
 import Search from '../components/Search'
 import { MainStyle } from '../styles/styles'
 import { searchMovies } from '../services/movies'
+import MovieListItem from '../components/MovieListItem'
 
 export default function SearchScreen() {
 
@@ -60,7 +61,7 @@ export default function SearchScreen() {
                     <FlatList
                         style={styles.moviesList}
                         data={state.moviesList}
-                        renderItem={({item}) => <Text> { item.title }</Text>}
+                        renderItem={({item}) => <MovieListItem movie={item} />}
                         keyExtractor={item => item.id.toString()}
                         onEndReachedThreshold={0.5}
                         onEndReached={() => {
