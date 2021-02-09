@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, SafeAreaView, Image, FlatList } from 'react-native'
+import { View, Text, StyleSheet, SafeAreaView, Image, FlatList, ActivityIndicator } from 'react-native'
 import LogoHeader from '../components/LogoHeader'
 import Search from '../components/Search'
 import { MainStyle } from '../styles/styles'
@@ -13,6 +13,7 @@ export default function SearchScreen() {
         moviesList: [],
         isLoading: false,
         page: 0,
+        totalPages: 0,
         noResult: true,
         noResultMessage: 'Aucune recherche effectuée'
     })
@@ -24,9 +25,9 @@ export default function SearchScreen() {
     const _searchMovies = () => {
 
         if (state.searchQuery != '') {
-           loadMovies({...state, isLoading: false, page:  0, moviesList: []}) 
+           loadMovies({...state, isLoading: false, page: 0, totalPages: 0, moviesList: []}) 
         } else {
-            setState({...state, isLoading: false, page:  0, moviesList: [], noResult: true, noResultMessage: 'Aucune recherche effectuée'})
+            setState({...state, isLoading: false, page: 0, totalPages: 0, moviesList: [], noResult: true, noResultMessage: 'Aucune recherche effectuée'})
         }   
     }
 
@@ -38,7 +39,7 @@ export default function SearchScreen() {
 
         searchMovies(_state.searchQuery, _state.page + 1)
             .then(data => {
-                setState({..._state, page: data.page, moviesList: [..._state.moviesList, ...data.results], noResult: false, noResultMessage: 'Il n\'y a aucun resultat'})
+                setState({..._state, page: data.page, totalPages: data.total_pages, moviesList: [..._state.moviesList, ...data.results], noResult: false, noResultMessage: 'Il n\'y a aucun resultat'})
             })
     }
 
@@ -49,12 +50,14 @@ export default function SearchScreen() {
             {
                 state.moviesList == 0 || state.noResult ? (
 
-                    <View style={styles.noResultContainer}>
+                    !state.isLoading && (
+                        <View style={styles.noResultContainer}>
                         <Image style={styles.noResultImage} source={require('../../assets/images/bad.png')}/>
                         <Text style={styles.noResultText}>
                             {state.noResultMessage}
                         </Text>
                     </View>
+                    )
 
                 ) : (
 
@@ -63,13 +66,22 @@ export default function SearchScreen() {
                         data={state.moviesList}
                         renderItem={({item}) => <MovieListItem movie={item} />}
                         keyExtractor={item => item.id.toString()}
-                        onEndReachedThreshold={0.5}
+                        onEndReachedThreshold={0.2}
                         onEndReached={() => {
-                            console.log('end');
+                            if (state.page < state.totalPages) {
+                                loadMovies({...state})
+                            }
                         }}
                     />
  
                 )
+            }
+            { 
+                state.isLoading ?
+                    <View style={styles.loadingcontainer}>
+                        <ActivityIndicator size='large' color={MainStyle.primaryColor} />
+                    </View>
+                    : null
             }
         </SafeAreaView>
     )
