@@ -22,10 +22,11 @@ const styles = StyleSheet.create({
        
     },
     ButtonContainer: {
+        marginVertical : 20,
         elevation: 8,
         backgroundColor: MainStyle.lightColor,
-        paddingVertical: 10,
-        paddingHorizontal: 12,
+        paddingVertical: 20,
+        paddingHorizontal: 40,
         shadowColor: MainStyle.primaryColor,
         shadowOffset: {
             width: 0,
