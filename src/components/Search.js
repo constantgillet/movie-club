@@ -3,7 +3,12 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-nativ
 import { MainStyle } from '../styles/styles'
 import { FontAwesome5 } from '@expo/vector-icons'; 
 
-export default function Search() {
+export default function Search({ handleSearch, handleClickButton, ...props }) {
+
+    const onChangeText = (text) => {
+        handleSearch(text)
+    }
+
     return (
         <View style={styles.mainContainer}>
             <View style={styles.inputContainer}>
@@ -15,11 +20,11 @@ export default function Search() {
                 <TextInput
                     style={styles.textInput}
                     placeholder='Titre du film'
-                    onChangeText={() => {}}
+                    onChangeText={onChangeText}
                 />
             </View>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button}> 
+                <TouchableOpacity style={styles.button} onPress={ () => { handleClickButton() } } > 
                     <Text style={styles.buttonText}>Recherche</Text>
                 </TouchableOpacity>
             </View>
