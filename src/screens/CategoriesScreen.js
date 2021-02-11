@@ -1,26 +1,35 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, Button, SafeAreaView, FlatList } from 'react-native'
 import ButtonCategories from '../components/ButtonCategories'
 import LogoHeader from '../components/LogoHeader'
-import { searchMovies } from '../services/movies'
+import { getGenresList, searchMovies } from '../services/movies'
 
 
-export default function CategoriesScreen() {
+export default function CategoriesScreen(props) {
+
+    const [genresList, setGenresList] = useState([])
+
+    useEffect(() => {
+        getGenresList().then(data => {
+            setGenresList(data.genres)
+        })
+    }, [])
+    
     return (
         <SafeAreaView style={styles.mainContainer}>
-            <LogoHeader/>
-                
-            <FlatList
-                style={styles.categories}
-                columnWrapperStyle={{justifyContent: 'space-between'}}
-                data={"testsaufuaufuazfu"}
-                numColumns={2}
-                renderItem={({item}) => {
-                return (
-                    <ButtonCategories/>
-                );
-                }}
-            />
+            <LogoHeader/>            
+            {
+                genresList.length > 0 ? (
+                    <FlatList
+                        style={styles.categories}
+                        data={genresList}
+                        columnWrapperStyle={{justifyContent: 'space-between'}}
+                        numColumns={2}
+                        renderItem={({item}) => <ButtonCategories text={item.name} onPress={() => props.navigation.navigate('MoviesListScreen', {id: item.id, name: item.name})} />}
+                        keyExtractor={item => item.id.toString()}
+                    />
+                ) : null
+            }
         </SafeAreaView>
 
     )

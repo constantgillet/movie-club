@@ -4,11 +4,17 @@ import { color } from 'react-native-reanimated';
 import { MainStyle } from '../styles/styles'
 
 export default class ButtonCategories extends React.Component {
+
+    constructor(props) {
+        super()
+        this.props = props
+    }
+
     render() {
         return (
             <View>
-                <TouchableOpacity  style={styles.ButtonContainer}>
-                    <Text style={styles.ButtonText}>text</Text>
+                <TouchableOpacity  style={styles.ButtonContainer} onPress={this.props.onPress}>
+                    <Text style={styles.ButtonText}>{this.props.text}</Text>
                 </TouchableOpacity>
             </View>
         )
