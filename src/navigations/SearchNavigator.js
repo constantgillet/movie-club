@@ -11,15 +11,15 @@ export default function SearchNavigator() {
         <Stack.Navigator>
             <Stack.Screen name="SearchScreen" component={SearchScreen} options={{headerShown: false}}/>
             <Stack.Screen 
-            name="DetailScreen" 
-            component={DetailScreen} 
-            options={
-                {
-                    headerTransparent: true, 
-                    headerTitle: false,
-                    headerTintColor: 'white'
-                }
-            } 
+                name="DetailScreen" 
+                component={DetailScreen} 
+                options={
+                    {
+                        headerTransparent: true, 
+                        headerTitle: false,
+                        headerTintColor: 'white'
+                    }
+                } 
             />
         </Stack.Navigator>
     )

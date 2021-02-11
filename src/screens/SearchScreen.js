@@ -64,7 +64,7 @@ export default function SearchScreen(props) {
                     <FlatList
                         style={styles.moviesList}
                         data={state.moviesList}
-                        renderItem={({item}) => <MovieListItem movie={item} onPress={() => props.navigation.navigate('DetailScreen', {id: item.id})}/>}
+                        renderItem={({item}) => <MovieListItem movie={item} onPress={() => props.navigation.navigate('DetailScreen', {id: item.id})} />}
                         keyExtractor={item => item.id.toString()}
                         onEndReachedThreshold={0.2}
                         onEndReached={() => {
