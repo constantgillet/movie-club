@@ -7,7 +7,7 @@ export default function MovieListItem({movie, onPress}) {
 
     const releaseYear = new Date(movie.release_date).getFullYear();
 
-
+    console.log(movie);
     return (
         <TouchableOpacity style={styles.mainContainer} onPress={onPress}>
             <Image source={{uri: `https://image.tmdb.org/t/p/original${movie.poster_path}`}} style={styles.image} />
@@ -50,12 +50,13 @@ const styles = StyleSheet.create({
         color: MainStyle.secondaryColor
     },
     contentContainer: {
+        flex: 1,
         padding: 24,
         flexDirection: 'row',
         alignItems: 'center'
     },
     textContainer: {
-        flex: 0.75
+        flex: 0.8
     },
     releaseDate: {
         color: MainStyle.secondaryColor
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
         color: MainStyle.secondaryColor
     },
     scoreContainer: {
-        flex: 0.1,
+        flex: 0.2,
         justifyContent: 'flex-end'
     },
     score: {

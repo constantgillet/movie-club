@@ -10,9 +10,9 @@ const Stack = createStackNavigator()
 export default function CategoriesNavigator() {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="CategoriesScreen" component={CategoriesScreen} options={{headerShown: false}}/>
+            <Stack.Screen name='CategoriesScreen' component={CategoriesScreen} options={{headerShown: false}}/>
             <Stack.Screen 
-                name="MoviesListScreen" 
+                name='MoviesListScreen'
                 component={CategoryMoviesListScreen}
                 options={
                     {
@@ -30,7 +30,7 @@ export default function CategoriesNavigator() {
                 } 
             />
             <Stack.Screen 
-                name="DetailScreen" 
+                name='DetailScreen' 
                 component={DetailScreen} 
                 options={
                     {

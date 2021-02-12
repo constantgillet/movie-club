@@ -13,7 +13,7 @@ export default function Search({ handleSearch, handleClickButton, ...props }) {
         <View style={styles.mainContainer}>
             <View style={styles.inputContainer}>
                 <FontAwesome5 
-                    name="search" 
+                    name='search' 
                     size={20} 
                     color={MainStyle.primaryColor} 
                 />

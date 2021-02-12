@@ -22,12 +22,12 @@ export default function MainBottomNavigator() {
             }}
         >
             <TabNavigator.Screen 
-                name="Categories" 
+                name='Categories'
                 component={CategoriesNavigator}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <FontAwesome5 
-                            name="home" 
+                            name='home' 
                             size={styles.tabBarIcon.height} 
                             color={ focused ? styles.tabBarIconFocused.color : styles.tabBarIcon.color }
                         />
@@ -35,12 +35,12 @@ export default function MainBottomNavigator() {
                 }}
             />
             <TabNavigator.Screen 
-                name="Search" 
+                name='Search'
                 component={SearchNavigator}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <FontAwesome5 
-                            name="search" 
+                            name='search' 
                             size={styles.tabBarIcon.height} 
                             color={ focused ? styles.tabBarIconFocused.color : styles.tabBarIcon.color } 
                         />

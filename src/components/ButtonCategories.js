@@ -28,11 +28,11 @@ const styles = StyleSheet.create({
        
     },
     ButtonContainer: {
-        marginVertical : 20,
+        marginVertical : 10,
         elevation: 8,
         backgroundColor: MainStyle.lightColor,
         paddingVertical: 20,
-        paddingHorizontal: 40,
+        paddingHorizontal: 22,
         shadowColor: MainStyle.primaryColor,
         shadowOffset: {
             width: 0,
@@ -41,13 +41,14 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.23,
         shadowRadius: 2.62,
         elevation: 4,
-        width: '125px'
+        width: 155,
       },
     ButtonText: {
-        fontSize: 12,
+        fontSize: 14,
         color: MainStyle.primaryColor,
-        fontWeight: "bold",
-        alignSelf: "center",
-        textTransform: "uppercase"
+        fontWeight: 'bold',
+        alignSelf: 'center',
+        textTransform: 'capitalize',
+        textAlign: 'center'
       }
 })

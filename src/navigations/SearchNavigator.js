@@ -9,9 +9,9 @@ const Stack = createStackNavigator()
 export default function SearchNavigator() {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="SearchScreen" component={SearchScreen} options={{headerShown: false}}/>
+            <Stack.Screen name='SearchScreen' component={SearchScreen} options={{headerShown: false}}/>
             <Stack.Screen 
-                name="DetailScreen" 
+                name='DetailScreen' 
                 component={DetailScreen} 
                 options={
                     {
