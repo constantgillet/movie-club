@@ -41,9 +41,10 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.23,
         shadowRadius: 2.62,
         elevation: 4,
+        width: '125px'
       },
     ButtonText: {
-        fontSize: 18,
+        fontSize: 12,
         color: MainStyle.primaryColor,
         fontWeight: "bold",
         alignSelf: "center",
